@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rise_float</name>
+  <version>0.0.0</version>
+  <description>The rise float package</description>
+
+  <maintainer email="mzhou@uri.edu">Emir Cem Gezer</maintainer>
+  <author email="mzhou@uri.edu">Mingxi Zhou</author>
+  <author email="mzhou@uri.edu">Emir Cem Gezer</author>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+
+  </export>
+</package>
