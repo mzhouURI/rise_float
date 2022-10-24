@@ -1,0 +1,13 @@
+port: /dev/PICO
+
+pwm_control:
+  heave_port:
+    channel: 0
+    mode: thruster
+    topic: control/thruster/heave_port
+
+  heave_stbd:
+    channel: 1
+    mode: thruster
+    topic: control/thruster/heave_stbd
+

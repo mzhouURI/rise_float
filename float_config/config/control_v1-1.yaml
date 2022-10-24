@@ -1,0 +1,94 @@
+generator_type: tf
+
+controller_frequency: 10
+
+tf_prefix: float
+
+cg_link: cg_link
+
+world_link: world_ned
+
+odometry_source: /odometry/filtered/local
+
+enabled: false
+
+control_modes:
+  idle: false
+
+  profile:
+    pitch:    {p: 10.0,    i: 3.0,   d: 15.0,  i_max: 20, i_min: -20}
+    heave:    {p: 10.0,    i: 5.0,   d: 5.0,   i_max: 30, i_min: -30}
+
+  hold:
+    x:        {p: 2.5,    i: 1.0,   d: 5.0,  i_max: 10, i_min: -10}
+    y:        {p: 2.5,    i: 1.0 ,  d: 5.0,  i_max: 10, i_min: -10}
+    z:        {p: 10.0,   i: 1.0 ,  d: 5.0,  i_max: 20, i_min: -20}
+
+
+##
+# THRUSTERS
+##
+thruster_ids:
+  - heave_port
+  - heave_stbd
+
+thruster_command_topics:
+  heave_port: control/thruster/heave_port
+  heave_stbd: control/thruster/heave_stbd
+
+thruster_force_topics:
+  heave_port: control/force/heave_port
+  heave_stbd: control/force/heave_stbd
+
+
+control_tf:
+  heave_port: heave_port_thruster_link
+  heave_stbd: heave_stbd _thruster_link
+
+##
+# Polynomials for each thruster.
+#
+# Quadratic Programming Optimization computes the thrust
+# required. We need to turn that number into thruster command.
+# Setpoint commands in this system defined between -1 and 1.
+#
+# y axis of the polynomial , f(x) = y, should be in Newton.
+#
+# Take the polynomial
+# f(x) = a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
+#
+# Array would hold the lower degrees in lower indexes. Shown below:
+# [a_0, a_1, ... ,a_(n-1), a(n)]
+#
+# For T200 bluerobotics thrusters:
+#   f(x) = a5*x^5 + a4*x^4 + a3*x^3 + a2*x^2 + a1*x + a0
+# Curve fitting results:
+#   a0 =      0.06165
+#   a1 =      20.32
+#   a2 =      9.632
+#   a3 =      93.05
+#   a4 =      -2.856
+#   a5 =      -74.1
+#
+# For T500 bluerobotics thrusters:
+# Curve fitting results:
+#   a0 =      -0.03703
+#   a1 =      4.217
+#   a2 =      2.84
+#   a3 =      4.976
+#   a4 =      -0.4119
+#   a5 =      -0.8448
+#
+##
+thruster_polynomials:
+  heave_port:  [0.06165, 20.32, 9.632, 93.05, -2.856, -74.1]
+  heave_stbd: [0.06165, 20.32, 9.632, 93.05, -2.856, -74.1]
+
+## Force limits
+thruster_limits:
+  heave_port:
+    max: 30
+    min: -30
+  heave_stbd:
+    max: 30
+    min: -30
