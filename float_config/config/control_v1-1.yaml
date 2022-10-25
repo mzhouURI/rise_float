@@ -15,14 +15,14 @@ enabled: false
 control_modes:
   idle: false
 
-  profile:
+  goto_depth:
     pitch:    {p: 10.0,    i: 3.0,   d: 15.0,  i_max: 20, i_min: -20}
     heave:    {p: 10.0,    i: 5.0,   d: 5.0,   i_max: 30, i_min: -30}
 
-  hold:
-    x:        {p: 2.5,    i: 1.0,   d: 5.0,  i_max: 10, i_min: -10}
-    y:        {p: 2.5,    i: 1.0 ,  d: 5.0,  i_max: 10, i_min: -10}
-    z:        {p: 10.0,   i: 1.0 ,  d: 5.0,  i_max: 20, i_min: -20}
+  # hold:
+  #   x:        {p: 2.5,    i: 1.0,   d: 5.0,  i_max: 10, i_min: -10}
+  #   y:        {p: 2.5,    i: 1.0 ,  d: 5.0,  i_max: 10, i_min: -10}
+  #   z:        {p: 10.0,   i: 1.0 ,  d: 5.0,  i_max: 20, i_min: -20}
 
 
 ##
@@ -43,7 +43,7 @@ thruster_force_topics:
 
 control_tf:
   heave_port: heave_port_thruster_link
-  heave_stbd: heave_stbd _thruster_link
+  heave_stbd: heave_stbd_thruster_link
 
 ##
 # Polynomials for each thruster.

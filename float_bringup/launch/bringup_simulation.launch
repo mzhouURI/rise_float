@@ -56,6 +56,6 @@
         In the legacy simulator, navigation works by publishing ground truth.
     -->
 
-    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find float_description)/rviz/config.rviz"/> -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find float_description)/rviz/config.rviz"/>
 
 </launch>

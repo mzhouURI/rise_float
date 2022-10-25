@@ -3,24 +3,18 @@ helm_configuration:
 
 finite_state_machine:
   - name: start
-    mode: hold3
+    mode: idle
     initial: true
     transitions:
-      - survey_local
-      - survey_global
+      - hdepth
       - evaluation
       - kill
 
-  - name: survey_local
-    mode: flight
+  - name: dive
+    mode: goto_depth
     transitions:
       - start
-      - kill
-
-  - name: survey_global
-    mode: flight
-    transitions:
-      - start
+      - dive
       - kill
 
   - name: kill
@@ -29,7 +23,7 @@ finite_state_machine:
       - start
 
   - name: evaluation
-    mode: flight
+    mode: idle
     transitions:
       - start
       - kill
@@ -40,41 +34,12 @@ behaviors:
     states:
       - { name: evaluation, priority: 1}
 
-  - name: path_local
-    plugin: helm::PathFollowing
-    states:
-      - { name: survey_local, priority: 1 }
-
-  - name: path_global
-    plugin: helm::PathFollowing
-    states:
-      - { name: survey_global, priority: 1 }
-
   - name: depth_tracking
     plugin: helm::DepthTracking
     states:
-      - { name: survey_local, priority: 1 }
-      - { name: survey_global, priority: 1 }
+      - { name: dive, priority: 1 }
 
   - name: periodic_sufacing
     plugin: helm::PeriodicSurface
     states:
-      - {name: survey_local, priority: 2 }
-      - {name: survey_global, priority: 2 }
-
-  - name: teleop
-    plugin: helm::Teleoperation
-    states:
-      - {name: survey_local, priority: 2 }
-      - {name: survey_global, priority: 2 }
-      - {name: teleop, priority: 1 }
-
-  - name: hold_pos
-    plugin: helm::HoldPosition
-    states:
-      - {name: start, priority: 1}
-
-  - name: gps_wpt
-    plugin: helm::GpsWaypoint
-    states:
-      - {name: survey_global, priority: 1}
+      - {name: dive, priority: 2 }

@@ -6,7 +6,7 @@
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
-                <mesh filename="package://alpha_description/mesh/float_assembly.stl" scale="0.001 0.001 0.001"/>
+                <mesh filename="package://float_description/mesh/float_assembly.stl" scale="0.001 0.001 0.001"/>
             </geometry>
         </visual>
     </link>
@@ -18,39 +18,39 @@
         <child link="cg_link"/>
     </joint>
 
-    <!-- <link name="imu"/>
+    <link name="imu"/>
     <joint name="imu_joint" type="fixed">
-        <origin xyz="-0.0465 0.060 0.14648" rpy="3.14159265359 0.0 0.0"/>
+        <origin xyz="-0.0465 0.060 0.14648" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="imu"/>
     </joint>
 
     <link name="gps"/>
     <joint name="gps_joint" type="fixed">
-        <origin xyz="0.1 0.0 0.407241" rpy="3.1415 0.0 0.0"/>
+        <origin xyz="-0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="gps"/>
     </joint>
 
     <link name="pressure"/>
     <joint name="pressure_joint" type="fixed">
-        <origin xyz="-0.187845 -0.060 0.124465" rpy="0.0 3.14159265359 0.0"/>
+        <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="pressure"/>
     </joint>
 
     <link name="heave_port_thruster_link"/>
     <joint name="heave_port_thruster_joint" type="fixed">
-        <origin xyz="-0.554 0.0 0.100" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.2 0.11 0.0" rpy="0.0 1.57 0.0"/>
         <parent link="base_link"/>
         <child link="heave_port_thruster_link"/>
     </joint>
 
     <link name="heave_stbd_thruster_link"/>
     <joint name="heave_stbd_thruster_joint" type="fixed">
-        <origin xyz="0.48735 0.0 0.089" rpy="0.0 1.57079632679 0.0"/>
+        <origin xyz="0.2 -0.11 0.0" rpy="0.0 1.57 0.0"/>
         <parent link="base_link"/>
         <child link="heave_stbd_thruster_link"/>
-    </joint> -->
+    </joint>
 
 </robot>
