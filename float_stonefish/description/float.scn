@@ -123,7 +123,7 @@
             <ros_publisher topic="/gps/fix"/>
         </sensor>
 
-        <sensor name="Odometry" rate="100.0" type="odometry">
+        <sensor name="base_link" rate="100.0" type="odometry">
             <noise position="0.05" velocity="0.01" angle="0.1" angular_velocity="0.05"/>
             <history samples="1"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
@@ -133,7 +133,7 @@
         <!-- add eco sounder later! -->
 
         <world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-        <ros_base_link_transform publish="true"/>
+        <ros_base_link_transforms publish="true"/>
     </robot>
 
 </scenario>
