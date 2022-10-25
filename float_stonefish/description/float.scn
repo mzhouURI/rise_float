@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of ALPHA AUV project.
+
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<scenario>
+    <include file="$(find world_stonefish)/description/looks.scn"/>
+    <include file="$(find world_stonefish)/description/materials.scn"/>
+
+    <robot name="float" fixed="false" self_collisions="false">
+
+        <base_link name="Vehicle" type="compound" physics="submerged">
+            <external_part name="Hull" type="model" physics="submerged" buoyant="true">
+                <physical>
+                    <mesh filename="float_body.obj" scale="0.001"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="float_body.obj" scale="0.001"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Vehicle"/>
+                <look name="yellow"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                <cg xyz="-0.2 0.0 0.0" rpy="0.0 1.57 0.0"/>
+            </external_part>
+
+            <internal_part name="Foam" type="cylinder" physics="floating" buoyant="true">
+                <dimensions radius="0.1" height="0.2"/>
+                <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                <material name="Foam"/>
+                <!-- <mass value="5.0"/> -->
+                <look name="grey"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="-0.1 0.0 0.0"/>
+            </internal_part>
+
+            <internal_part name="Aluminium" type="cylinder" physics="floating" buoyant="true">
+                <dimensions radius="0.1" height="0.075"/>
+                <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                <material name="Aluminium"/>
+                <inertia xyz="1.0 1.0 1.0"/>
+                <look name="grey"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="0.2 0.0 0.0"/>
+            </internal_part>
+
+            <!-- <external_part name="ThrusterDuctPort" type="model" physics="submerged" buoyant="false">
+                <physical>
+                    <mesh filename="duct.obj" scale="0.001"/>
+                    <origin rpy="0.0 1.571 0.0" xyz="-1.325 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="duct.obj" scale="0.001"/>
+                    <origin rpy="0.0 1.571 0.0" xyz="-1.325 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="black"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            </external_part>
+            <external_part name="ThrusterDuctStbd" type="model" physics="submerged" buoyant="false">
+                <physical>
+                    <mesh filename="duct.obj" scale="0.001"/>
+                    <origin rpy="0.0 1.571 0.0" xyz="-1.325 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="duct.obj" scale="0.001"/>
+                    <origin rpy="0.0 1.571 0.0" xyz="1.325 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="black"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            </external_part> -->
+        </base_link>
+<!-- 
+        <actuator name="ThrusterHeavePort" type="thruster">
+            <link name="Vehicle"/>
+            <origin rpy="0.0 -1.571 0.0" xyz="-1.0956 0.0 0.0"/>
+            <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
+            <propeller diameter="0.08" right="true">
+                <mesh filename="prop.obj" scale="1.0"/>
+                <material name="Neutral"/>
+                <look name="white"/>
+            </propeller>
+            <ros_subscriber topic="/control/thruster/heave_stern"/>
+        </actuator>
+
+        <actuator name="ThrusterHeaveStbd" type="thruster">
+            <link name="Vehicle"/>
+            <origin rpy="0.0 -1.571 0.0" xyz="-0.2857 0.0 0.0"/>
+            <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
+            <propeller diameter="0.08" right="true">
+                <mesh filename="prop.obj" scale="1.0"/>
+                <material name="Neutral"/>
+                <look name="white"/>
+            </propeller>
+            <ros_subscriber topic="/control/thruster/heave_bow"/>
+        </actuator> -->
+
+        <sensor name="pressure" type="pressure" rate="5.0">
+            <link name="Vehicle"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-1.20 0.0 0.0"/>
+            <noise pressure="5.0"/>
+            <ros_publisher topic="/pressure"/>
+        </sensor>
+
+        <sensor name="imu" type="imu" rate="20.0">
+            <link name="Vehicle"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.65 0.0 0.0"/>
+            <noise angle="0.000001745" angular_velocity="0.00001745"/>
+            <ros_publisher topic="/imu/stonefish/data"/>
+        </sensor>
+
+        <sensor name="gps" type="gps" rate="1.0">
+            <link name="Vehicle"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.54 0.0 -0.2"/>
+            <noise ned_position="0.5"/>
+            <ros_publisher topic="/gps/fix"/>
+        </sensor>
+        <!-- add eco sounder later! -->
+
+        <world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+
+    </robot>
+
+</scenario>

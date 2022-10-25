@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of float AUV project.
+
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<launch>
+
+    <arg name="robot_name" default="float"/>
+    <arg name="robot_version" default="v1-1"/>
+
+    <include file="$(find float_bringup)/launch/include/control.launch.xml">
+        <arg name="robot_name" value="$(arg robot_name)"/>
+        <arg name="robot_version" value="$(arg robot_version)"/>
+    </include>
+
+</launch>

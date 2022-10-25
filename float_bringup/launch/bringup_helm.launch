@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of float AUV project.
+
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<launch>
+
+    <node pkg="mvp_helm" type="helm" name="helm" output="screen">
+        <!--
+            Load the parameters for the MVP Helm
+        -->
+        <rosparam
+            command="load"
+            file="$(find float_config)/mission/config/helm.yaml"/>
+
+        <!--
+            Load all the parameters for the behaviors.
+        -->
+        <rosparam command="load" ns="depth_tracking" file="$(find float_config)/mission/param/depth_tracking.yaml"/>
+        <rosparam command="load" ns="gps_wpt" file="$(find float_config)/mission/param/gps_wpt.yaml"/>
+        <rosparam command="load" ns="hold_pos" file="$(find float_config)/mission/param/hold_pos.yaml"/>
+        <rosparam command="load" ns="path_global" file="$(find float_config)/mission/param/path_global.yaml"/>
+        <rosparam command="load" ns="path_local" file="$(find float_config)/mission/param/path_local.yaml"/>
+        <rosparam command="load" ns="periodic_surfacing" file="$(find float_config)/mission/param/periodic_surfacing.yaml"/>
+        <rosparam command="load" ns="timer" file="$(find float_config)/mission/param/timer.yaml"/>
+        <rosparam command="load" ns="motion_evaluation" file="$(find float_config)/mission/param/motion_evaluation.yaml"/>
+    </node>
+
+</launch>

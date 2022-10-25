@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of float AUV project.
+
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<launch>
+
+    <arg name="robot_name" default="float"/>
+    <arg name="robot_version" default="v1-1"/>
+
+    <node pkg="mvp_control" type="mvp_control_ros_node" name="float_control" output="screen">
+        <rosparam command="load" file="$(find float_config)/config/control_$(arg robot_version).yaml"/>
+    </node>
+
+</launch>
