@@ -13,7 +13,6 @@
     <include file="$(find world_stonefish)/description/materials.scn"/>
 
     <robot name="float" fixed="false" self_collisions="false">
-
         <base_link name="Vehicle" type="compound" physics="submerged">
             <external_part name="Hull" type="model" physics="submerged" buoyant="true">
                 <physical>
@@ -131,11 +130,10 @@
             <link name="Vehicle"/>
             <ros_publisher topic="/odometry/filtered/local"/>
         </sensor>
-
         <!-- add eco sounder later! -->
 
         <world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-
+        <ros_base_link_transform publish="true"/>
     </robot>
 
 </scenario>
