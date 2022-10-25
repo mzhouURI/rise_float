@@ -113,7 +113,7 @@
             <link name="Vehicle"/>
             <origin rpy="0.0 0.0 0.0" xyz="-0.65 0.0 0.0"/>
             <noise angle="0.000001745" angular_velocity="0.00001745"/>
-            <ros_publisher topic="/imu/stonefish/data"/>
+            <ros_publisher topic="/imu/data"/>
         </sensor>
 
         <sensor name="gps" type="gps" rate="1.0">
