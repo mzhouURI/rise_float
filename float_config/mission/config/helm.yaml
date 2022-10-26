@@ -6,7 +6,7 @@ finite_state_machine:
     mode: idle
     initial: true
     transitions:
-      - hdepth
+      - dive
       - evaluation
       - kill
 

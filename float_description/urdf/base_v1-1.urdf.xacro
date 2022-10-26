@@ -40,14 +40,14 @@
 
     <link name="heave_port_thruster_link"/>
     <joint name="heave_port_thruster_joint" type="fixed">
-        <origin xyz="0.2 0.11 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.2 0.11 0.0" rpy="0.0 -1.57 0.0"/>
         <parent link="base_link"/>
         <child link="heave_port_thruster_link"/>
     </joint>
 
     <link name="heave_stbd_thruster_link"/>
     <joint name="heave_stbd_thruster_joint" type="fixed">
-        <origin xyz="0.2 -0.11 0.0" rpy="0.0 1.57 0.0"/>
+        <origin xyz="0.2 -0.11 0.0" rpy="0.0 -1.57 0.0"/>
         <parent link="base_link"/>
         <child link="heave_stbd_thruster_link"/>
     </joint>

@@ -17,16 +17,16 @@
             <external_part name="Hull" type="model" physics="submerged" buoyant="true">
                 <physical>
                     <mesh filename="float_body.obj" scale="0.001"/>
-                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                    <origin rpy="-1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
                 </physical>
                 <visual>
                     <mesh filename="float_body.obj" scale="0.001"/>
-                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                    <origin rpy="-1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
                 </visual>
                 <material name="Vehicle"/>
                 <look name="yellow"/>
                 <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-                <cg xyz="-0.0 0.0 0.0" rpy="0.0 1.57 0.0"/>
+                <cg xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             </external_part>
 
             <internal_part name="Foam" type="cylinder" physics="floating" buoyant="true">
@@ -35,7 +35,7 @@
                 <material name="Foam"/>
                 <mass value="2.15"/>
                 <look name="grey"/>
-                <compound_transform rpy="0.0 0.0 0.0" xyz="-0.1 0.0 0.0"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="-0.2 0.0 0.0"/>
             </internal_part>
 
             <internal_part name="Aluminium" type="cylinder" physics="floating" buoyant="true">
@@ -44,7 +44,7 @@
                 <material name="Aluminium"/>
                 <inertia xyz="0.065 0.205 0.205"/>
                 <look name="grey"/>
-                <compound_transform rpy="0.0 0.0 0.0" xyz="-0.2 0.0 0.0"/>
+                <compound_transform rpy="0.0 0.0 0.0" xyz="0.2 0.0 0.0"/>
             </internal_part>
             
             <!-- thruster duct -->
@@ -59,7 +59,7 @@
                 </visual>
                 <material name="Neutral"/>
                 <look name="black"/>
-                <compound_transform rpy="0.0 1.57 0.0" xyz="0.2 0.11 0.0"/>
+                <compound_transform rpy="0.0 1.57 0.0" xyz="-0.2 0.0 0.11"/>
             </external_part>
 
             <external_part name="ThrusterDuctStbd" type="model" physics="submerged" buoyant="true">
@@ -73,14 +73,14 @@
                 </visual>
                 <material name="Neutral"/>
                 <look name="black"/>
-                <compound_transform rpy="0.0 1.57 0.0" xyz="0.2 -0.11 0.0"/>
+                <compound_transform rpy="0.0 1.57 0.0" xyz="-0.2 0.0 -0.11"/>
             </external_part>
 
         </base_link>
 
         <actuator name="ThrusterHeavePort" type="thruster">
             <link name="Vehicle"/>
-            <origin rpy="0.0 3.1415926 0.0" xyz="0.22 0.11 0.0"/>
+            <origin rpy="0.0 3.1415926 0.0" xyz="-0.18 0.0 0.11"/>
             <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
             <propeller diameter="0.08" right="true">
                 <mesh filename="prop.obj" scale="1.0"/>
@@ -92,7 +92,7 @@
 
         <actuator name="ThrusterHeaveStbd" type="thruster">
             <link name="Vehicle"/>
-            <origin rpy="0.0 3.1415926 0.0" xyz="0.22 -0.11 0.0"/>
+            <origin rpy="0.0 3.1415926 0.0" xyz="-0.18 0.0 -0.11"/>
             <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
             <propeller diameter="0.08" right="true">
                 <mesh filename="prop.obj" scale="1.0"/>
