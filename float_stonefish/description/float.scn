@@ -11,22 +11,24 @@
 <scenario>
     <include file="$(find world_stonefish)/description/looks.scn"/>
     <include file="$(find world_stonefish)/description/materials.scn"/>
+    <!-- <include file="$(find alpha_stonefish)/description/alpha.scn"/> -->
 
     <robot name="float" fixed="false" self_collisions="false">
         <base_link name="Vehicle" type="compound" physics="submerged">
+            
             <external_part name="Hull" type="model" physics="submerged" buoyant="true">
                 <physical>
                     <mesh filename="float_body.obj" scale="0.001"/>
-                    <origin rpy="-1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
                 </physical>
                 <visual>
                     <mesh filename="float_body.obj" scale="0.001"/>
-                    <origin rpy="-1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
                 </visual>
                 <material name="Vehicle"/>
                 <look name="yellow"/>
                 <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-                <cg xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <cg xyz="0.0 0.0 0.0" rpy="1.5707 0.0 0.0"/>
             </external_part>
 
             <internal_part name="Foam" type="cylinder" physics="floating" buoyant="true">
@@ -59,7 +61,7 @@
                 </visual>
                 <material name="Neutral"/>
                 <look name="black"/>
-                <compound_transform rpy="0.0 1.57 0.0" xyz="-0.2 0.0 0.11"/>
+                <compound_transform rpy="0.0 -1.57 0.0" xyz="-0.2 0.11 0.0"/>
             </external_part>
 
             <external_part name="ThrusterDuctStbd" type="model" physics="submerged" buoyant="true">
@@ -73,14 +75,14 @@
                 </visual>
                 <material name="Neutral"/>
                 <look name="black"/>
-                <compound_transform rpy="0.0 1.57 0.0" xyz="-0.2 0.0 -0.11"/>
+                <compound_transform rpy="0.0 -1.57 0.0" xyz="-0.2 -0.11 0.0"/>
             </external_part>
 
         </base_link>
 
         <actuator name="ThrusterHeavePort" type="thruster">
             <link name="Vehicle"/>
-            <origin rpy="0.0 3.1415926 0.0" xyz="-0.18 0.0 0.11"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.22 0.11 0.0"/>
             <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
             <propeller diameter="0.08" right="true">
                 <mesh filename="prop.obj" scale="1.0"/>
@@ -92,7 +94,7 @@
 
         <actuator name="ThrusterHeaveStbd" type="thruster">
             <link name="Vehicle"/>
-            <origin rpy="0.0 3.1415926 0.0" xyz="-0.18 0.0 -0.11"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.22 -0.11 0.0"/>
             <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
             <propeller diameter="0.08" right="true">
                 <mesh filename="prop.obj" scale="1.0"/>
@@ -102,31 +104,31 @@
             <ros_subscriber topic="/control/thruster/heave_stbd"/>
         </actuator>
 
-        <sensor name="pressure" type="pressure" rate="5.0">
+        <!-- <sensor name="pressure" type="pressure" rate="5.0">
             <link name="Vehicle"/>
             <origin rpy="0.0 0.0 0.0" xyz="-1.20 0.0 0.0"/>
             <noise pressure="5.0"/>
             <ros_publisher topic="/pressure"/>
-        </sensor>
+        </sensor> -->
 
-        <sensor name="imu" type="imu" rate="20.0">
+        <!-- <sensor name="imu" type="imu" rate="20.0">
             <link name="Vehicle"/>
-            <origin rpy="0.0 0.0 0.0" xyz="-0.65 0.0 0.0"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.2 0.0 0.0"/>
             <noise angle="0.000001745" angular_velocity="0.00001745"/>
             <ros_publisher topic="/imu/data"/>
-        </sensor>
+        </sensor> -->
 
-        <sensor name="gps" type="gps" rate="1.0">
+        <!-- <sensor name="gps" type="gps" rate="1.0">
             <link name="Vehicle"/>
             <origin rpy="0.0 0.0 0.0" xyz="-0.54 0.0 -0.2"/>
             <noise ned_position="0.5"/>
             <ros_publisher topic="/gps/fix"/>
-        </sensor>
+        </sensor> -->
 
         <sensor name="base_link" rate="100.0" type="odometry">
             <noise position="0.05" velocity="0.01" angle="0.1" angular_velocity="0.05"/>
             <history samples="1"/>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 1.5707 0.0"/>
             <link name="Vehicle"/>
             <ros_publisher topic="/odometry/filtered/local"/>
         </sensor>
