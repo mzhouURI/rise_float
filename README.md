@@ -3,7 +3,7 @@ This repository is  for the underwater profiling float.
 Currently, it only has the simulation functionality.
 The odometry is directly obtained from the stonefish simulator
 
-# Directory structure
+## Directory structure
 `rise_float` Meta package for the underwater float
 
 `float_bringup` Contains launch files to bringup the vehicle or the simulator
