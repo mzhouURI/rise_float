@@ -82,15 +82,11 @@ Visualization Manager:
           Value: true
         float/cg_link:
           Value: true
-        float/gps:
-          Value: true
         float/heave_port_thruster_link:
           Value: true
         float/heave_stbd_thruster_link:
           Value: true
-        float/imu:
-          Value: true
-        float/pressure:
+        world:
           Value: true
         world_ned:
           Value: true
@@ -101,20 +97,15 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        world_ned:
-          float/base_link:
-            float/cg_link:
-              {}
-            float/gps:
-              {}
-            float/heave_port_thruster_link:
-              {}
-            float/heave_stbd_thruster_link:
-              {}
-            float/imu:
-              {}
-            float/pressure:
-              {}
+        world:
+          world_ned:
+            float/base_link:
+              float/cg_link:
+                {}
+              float/heave_port_thruster_link:
+                {}
+              float/heave_stbd_thruster_link:
+                {}
       Update Interval: 0
       Value: true
     - Class: rviz/Marker
@@ -166,12 +157,12 @@ Visualization Manager:
         y_scale: 1
         z_scale: 1
       Class: rviz_imu_plugin/Imu
-      Enabled: true
+      Enabled: false
       Name: Imu
       Queue Size: 10
       Topic: /imu/data
       Unreliable: false
-      Value: true
+      Value: false
       fixed_frame_orientation: true
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
@@ -297,23 +288,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        gps:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         heave_port_thruster_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
         heave_stbd_thruster_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        imu:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        pressure:
           Alpha: 1
           Show Axes: false
           Show Trail: false

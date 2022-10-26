@@ -12,19 +12,19 @@
 
     <link name="cg_link"/>
     <joint name="cg_joint" type="fixed">
-        <origin xyz="0.100 0.000 0.10" rpy="3.14159265359 0.0 0.0"/>
+        <origin xyz="0.0 0.000 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="cg_link"/>
     </joint>
 
-    <link name="imu"/>
+    <!-- <link name="imu"/>
     <joint name="imu_joint" type="fixed">
         <origin xyz="-0.0465 0.060 0.14648" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="imu"/>
-    </joint>
+    </joint> -->
 
-    <link name="gps"/>
+    <!-- <link name="gps"/>
     <joint name="gps_joint" type="fixed">
         <origin xyz="-0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
@@ -36,18 +36,18 @@
         <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="pressure"/>
-    </joint>
+    </joint> -->
 
     <link name="heave_port_thruster_link"/>
     <joint name="heave_port_thruster_joint" type="fixed">
-        <origin xyz="0.2 0.11 0.0" rpy="0.0 -1.57 0.0"/>
+        <origin xyz="-0.2 -0.11 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="heave_port_thruster_link"/>
     </joint>
 
     <link name="heave_stbd_thruster_link"/>
     <joint name="heave_stbd_thruster_joint" type="fixed">
-        <origin xyz="0.2 -0.11 0.0" rpy="0.0 -1.57 0.0"/>
+        <origin xyz="-0.2 0.11 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="heave_stbd_thruster_link"/>
     </joint>
