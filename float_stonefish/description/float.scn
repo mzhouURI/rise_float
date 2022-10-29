@@ -15,7 +15,6 @@
 
     <robot name="float" fixed="false" self_collisions="false">
         <base_link name="Vehicle" type="compound" physics="submerged">
-            
             <external_part name="Hull" type="model" physics="submerged" buoyant="true">
                 <physical>
                     <mesh filename="float_body.obj" scale="0.001"/>
@@ -50,7 +49,7 @@
             </internal_part>
             
             <!-- thruster duct -->
-            <external_part name="ThrusterDuctPort" type="model" physics="submerged" buoyant="true">
+            <!-- <external_part name="ThrusterDuctPort" type="model" physics="submerged" buoyant="true">
                 <physical>
                     <mesh filename="duct_reduced.obj" scale="0.001"/>
                     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
@@ -76,9 +75,51 @@
                 <material name="Neutral"/>
                 <look name="black"/>
                 <compound_transform rpy="0.0 -1.57 0.0" xyz="-0.2 0.11 0.0"/>
-            </external_part>
+            </external_part> -->
 
         </base_link>
+        
+		<link name="Vector_thruster" type="compound" physics="submerged">
+            <external_part name="Thruster_movable" type="model" physics="submerged" buoyant="true">
+                <physical>
+                    <mesh filename="duct_reduced.obj" scale="0.001"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                </physical>
+                <visual>
+                    <mesh filename="duct.obj" scale="0.001"/>
+                    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+                <material name="Neutral"/>
+                <look name="black"/>
+                <compound_transform rpy="0.0 -1.57 0.0" xyz="-0.2 -0.11 0.0"/>
+            </external_part>
+	    </link>	
+
+        <actuator name="Thruster_vector" type="thruster">
+            <link name="Vector_thruster"/>
+            <origin rpy="0.0 0.0 0.0" xyz="-0.2 -0.11 0.0"/>
+            <specs thrust_coeff="0.4315" thrust_coeff_backward="0.3404" torque_coeff="0.01" max_rpm="3000.0"/>
+            <propeller diameter="0.08" right="true">
+                <mesh filename="prop.obj" scale="1.0"/>
+                <material name="Neutral"/>
+                <look name="white"/>
+            </propeller>
+            <ros_subscriber topic="/control/thruster/vector"/>
+        </actuator>
+
+        <actuator name="Servo1" type="servo">
+			<joint name="Thruster_vector/joint1"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+		</actuator> 
+
+		<joint name="Thruster_vector/joint1" type="revolute">
+			<parent name="Vehicle"/>
+			<child name="Vector_thruster"/>
+			<origin rpy="0.0 0.0 0.0" xyz="-0.2 -0.11 0.0"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-1.5" max="1.5"/>
+		</joint>
+<!-- 
 
         <actuator name="ThrusterHeavePort" type="thruster">
             <link name="Vehicle"/>
@@ -102,7 +143,7 @@
                 <look name="white"/>
             </propeller>
             <ros_subscriber topic="/control/thruster/heave_stbd"/>
-        </actuator>
+        </actuator> -->
 
         <!-- <sensor name="pressure" type="pressure" rate="5.0">
             <link name="Vehicle"/>
@@ -111,12 +152,12 @@
             <ros_publisher topic="/pressure"/>
         </sensor> -->
 
-        <!-- <sensor name="imu" type="imu" rate="20.0">
+        <sensor name="imu" type="imu" rate="20.0">
             <link name="Vehicle"/>
-            <origin rpy="0.0 0.0 0.0" xyz="-0.2 0.0 0.0"/>
+            <origin rpy="0.0 1.5707 0.0" xyz="-0.2 0.0 0.0"/>
             <noise angle="0.000001745" angular_velocity="0.00001745"/>
             <ros_publisher topic="/imu/data"/>
-        </sensor> -->
+        </sensor>
 
         <!-- <sensor name="gps" type="gps" rate="1.0">
             <link name="Vehicle"/>
@@ -134,8 +175,11 @@
         </sensor>
         <!-- add eco sounder later! -->
 
-        <world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <world_transform rpy="0.0 0.0 0.0" xyz="3.0 0.0 0.0"/>
         <ros_base_link_transforms publish="true"/>
+        <ros_publisher servos="/Thruster_vector/joint_states" />
+		<ros_subscriber servos="/Thruster_vector/desired_joint_states"/> 
+
     </robot>
 
 </scenario>
