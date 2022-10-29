@@ -107,11 +107,6 @@
             <ros_subscriber topic="/control/thruster/vector"/>
         </actuator>
 
-        <actuator name="Servo1" type="servo">
-			<joint name="Thruster_vector/joint1"/>
-			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
-		</actuator> 
-
 		<joint name="Thruster_vector/joint1" type="revolute">
 			<parent name="Vehicle"/>
 			<child name="Vector_thruster"/>
@@ -119,6 +114,13 @@
 			<axis xyz="0.0 1.0 0.0"/>
 			<limits min="-1.5" max="1.5"/>
 		</joint>
+
+        <actuator name="Servo1" type="servo">
+			<joint name="Thruster_vector/joint1"/>
+            <controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+            <ros_subscriber topic="/Thruster_vector/desired_joint_states"/> 
+		</actuator> 
+
 <!-- 
 
         <actuator name="ThrusterHeavePort" type="thruster">
@@ -177,8 +179,6 @@
 
         <world_transform rpy="0.0 0.0 0.0" xyz="3.0 0.0 0.0"/>
         <ros_base_link_transforms publish="true"/>
-        <ros_publisher servos="/Thruster_vector/joint_states" />
-		<ros_subscriber servos="/Thruster_vector/desired_joint_states"/> 
 
     </robot>
 
